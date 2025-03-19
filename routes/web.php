@@ -12,6 +12,10 @@ Route::get('/detail', [DetailController::class, 'index'] )->name('detail');
 Route::get('/checkout', [CheckoutController::class, 'index'] )->name('checkout');
 Route::get('/checkout/success', [CheckoutController::class, 'success'] )->name('checkout-success');
 
-Route::prefix('admin')->middleware('admin')->group(function () {
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 });
+
+// Route::prefix('admin')->middleware('admin')->group(function () {
+//     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+// });
